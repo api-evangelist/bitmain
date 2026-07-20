@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.antpool.com/userApiGuide
+docs: https://www.antpool.com/userApiGuide
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - body
+  signature: HMAC-SHA256
+description: >-
+  Bitmain's public developer surface is the Antpool mining-pool API. It uses a
+  signed API-key model rather than OAuth. Each operator is issued an API "Key"
+  and "Secret"; every private request must include the user id, the API key, an
+  incrementing integer nonce, and a signature. The signature is an
+  HMAC-SHA256 hex digest (uppercased) of the message `userId + apiKey + nonce`
+  computed with the operator's API secret. There is no OAuth authorization
+  server, no scopes, and no OpenID Connect.
+schemes:
+- name: antpool-signature
+  type: apiKey
+  in: body
+  description: >-
+    Signed request authentication. Send `key` (API key), `nonce` (increasing
+    integer), and `signature` (HMAC-SHA256 of userId+key+nonce, keyed by the API
+    secret, hex, uppercased) as request parameters on every private call.
+  parameters:
+  - key
+  - nonce
+  - signature
+  signature_algorithm: HMAC-SHA256
+  signature_message: userId + apiKey + nonce
+  sources:
+  - https://www.antpool.com/userApiGuide
