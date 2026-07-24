@@ -1,0 +1,20 @@
+# Bitmain
+
+> Bitmain Technologies designs and manufactures ASIC cryptocurrency-mining hardware (the Antminer line) and operates Antpool, one of the world's largest Bitcoin mining pools. Antpool exposes a public HTTP API for account operators to read balances, hashrate, worker statistics, payment history, and pool statistics. Requests are signed with an HMAC-SHA256 signature (userId + apiKey + nonce, keyed by the API secret) and rate-limited to 600 requests per 10 minutes.
+
+## APIs
+
+- [Antpool API Guide](https://www.antpool.com/userApiGuide): Read account balance, account/worker hashrate, worker lists, payment history, and pool statistics. POST, form-encoded, JSON responses. Base URL https://antpool.com.
+
+## Artifacts
+
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/bitmain/refs/heads/main/authentication/bitmain-authentication.yml): Signed API-key (HMAC-SHA256) authentication profile.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/bitmain/refs/heads/main/conventions/bitmain-conventions.yml): Cross-cutting request/response conventions.
+- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/bitmain/refs/heads/main/rate-limits/bitmain-rate-limits.yml): 600 requests / 10 minutes per IP.
+- [Domain Security](https://raw.githubusercontent.com/api-evangelist/bitmain/refs/heads/main/security/bitmain-domain-security.yml): TLS/HSTS/DNSSEC/DMARC probe of bitmain.com.
+
+## Docs
+
+- [Bitmain Support](https://support.bitmain.com/): Antminer product manuals, firmware, and troubleshooting.
+- [Bitmain GitHub](https://github.com/bitmaintech): Antminer firmware and cgminer forks.
+- [Antpool](https://www.antpool.com/): Mining pool dashboard and account management.

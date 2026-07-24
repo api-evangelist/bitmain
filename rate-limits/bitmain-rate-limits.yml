@@ -1,0 +1,27 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+generated: '2026-07-18'
+method: searched
+provider: Bitmain (Antpool)
+providerId: bitmain
+created: '2026-07-18'
+modified: '2026-07-18'
+tags:
+- Rate Limiting
+- Mining Pool
+- Cryptocurrency
+description: >-
+  The Antpool mining-pool API enforces a per-IP request rate limit. Clients that
+  exceed 600 requests per 10 minutes have their IP address banned. Limits are not
+  published per account tier.
+sources:
+- https://www.antpool.com/userApiGuide
+limits:
+- name: All API requests
+  scope: ip
+  metric: requests_per_10_minutes
+  limit: 600
+  timeFrame: 10-minutes
+policies:
+- name: IP ban on excess
+  description: Exceeding 600 requests per 10 minutes results in the client IP address being banned.

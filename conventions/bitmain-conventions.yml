@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.antpool.com/userApiGuide
+description: >-
+  Cross-cutting request/response conventions for Bitmain's Antpool mining-pool
+  API. These are the developer-experience semantics that apply across the API
+  rather than to any single operation.
+base_url: https://antpool.com
+api_style: REST-ish over HTTPS, form-encoded POST requests, JSON responses
+transport:
+  method: POST
+  encoding: application/x-www-form-urlencoded
+  notes: All private interfaces are accessed via HTTP POST with the auth parameters in the request body.
+authentication:
+  scheme: Signed API key (HMAC-SHA256)
+  key_types:
+  - API Key + API Secret (issued per operator/account)
+  detail: authentication/bitmain-authentication.yml
+  docs: https://www.antpool.com/userApiGuide
+idempotency:
+  supported: false
+  notes: >-
+    The Antpool API does not document an idempotency-key mechanism. Requests are
+    read-oriented (account/hashrate/workers/payment/pool statistics); the nonce
+    is a replay guard, not an idempotency key.
+pagination:
+  style: page-number
+  notes: >-
+    Listing interfaces (e.g. worker lists, payment history) accept page-number /
+    page-size parameters; exact field names are documented per-interface in the
+    API guide.
+versioning:
+  scheme: none-documented
+  notes: The API guide does not publish a formal version identifier or version header.
+rate_limiting:
+  documented: true
+  limit: 600 requests per 10 minutes per IP
+  enforcement: Exceeding the limit results in the client IP address being banned.
+  detail: rate-limits/bitmain-rate-limits.yml
+  docs: https://www.antpool.com/userApiGuide
+error_envelope:
+  format: JSON
+  notes: >-
+    Responses are JSON with a status/code indicator and a data payload; the API
+    does not use RFC 9457 problem+json.
+cross_links:
+  authentication: authentication/bitmain-authentication.yml
+  rate_limits: rate-limits/bitmain-rate-limits.yml
